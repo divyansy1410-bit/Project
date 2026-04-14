@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPL Score Predictor Pro</title>
+  <meta name="description" content="Advanced Deep Learning IPL Match Predictor" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- External CSS Link -->
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body class="theme-default">
+
+  <!-- Interactive Background Particles -->
+  <div id="particles-js" class="particles-container"></div>
+  <div class="glow-orb orb-primary"></div>
+  <div class="glow-orb orb-secondary"></div>
+
+  <!-- Header -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-icon">🏏</div>
+        <div class="brand-text">
+          <span class="pulse-dot"></span>
+          <h1>IPL Predictor <span>DL Engine v2.0</span></h1>
+        </div>
+      </div>
+      <div class="status-panel">
+        <div class="status-indicator">
+          <span id="server-status" class="status-dot connecting"></span>
+          <span id="server-text">Connecting to Engine...</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    
+    <!-- Top Metrics Overview -->
+    <section class="performance-metrics">
+      <div class="metric-box interactive-hover">
+        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <div class="metric-content">
+          <span class="metric-value fade-in" id="m-r2">--</span>
+          <span class="metric-title">Model Accuracy (R²)</span>
+        </div>
+      </div>
+      <div class="metric-box interactive-hover">
+        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <div class="metric-content">
+          <span class="metric-value fade-in" id="m-mae">--</span>
+          <span class="metric-title">Mean Error (Runs)</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="main-grid">
+      
+      <!-- Interactive Prediction Form -->
+      <section class="predictor-section glass-panel">
+        <div class="panel-header">
+          <h2>Live Match State</h2>
+          <p>Update conditions to recalculate prediction</p>
+        </div>
+
+        <form id="prediction-form" class="interactive-form">
+          <!-- Teams -->
+          <div class="form-group-row">
+            <div class="input-wrapper select-wrapper team-select batting-wrap">
+              <label for="batting_team">Batting Team</label>
+              <select id="batting_team" required class="dynamic-select"></select>
+              <div class="select-indicator"></div>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="input-wrapper select-wrapper team-select bowling-wrap">
+              <label for="bowling_team">Bowling Team</label>
+              <select id="bowling_team" required class="dynamic-select"></select>
+              <div class="select-indicator"></div>
+            </div>
+          </div>
+
+          <!-- Venue & Players -->
+          <div class="form-group-row">
+            <div class="input-wrapper select-wrapper full-width">
+              <label for="venue">Stadium / Venue</label>
+              <select id="venue" required class="dynamic-select"></select>
+            </div>
+          </div>
+
+          <div class="details-grid">
+            <div class="input-wrapper select-wrapper">
+              <label for="batsman">Striker</label>
+              <select id="batsman" required class="dynamic-select"></select>
+            </div>
+            <div class="input-wrapper select-wrapper">
+              <label for="bowler">Bowler</label>
+              <select id="bowler" required class="dynamic-select"></select>
+            </div>
+          </div>
+
+          <hr class="form-divider" />
+
+          <!-- Live Score Inputs -->
+          <div class="live-score-grid">
+            <div class="input-wrapper number-input highlight-input">
+              <label for="current_score">Current Score</label>
+              <input type="number" id="current_score" min="0" max="300" required placeholder="0" class="num-spin" />
+            </div>
+            <div class="slash-divide">/</div>
+            <div class="input-wrapper number-input highlight-input">
+              <label for="wickets">Wickets</label>
+              <input type="number" id="wickets" min="0" max="10" required placeholder="0" class="num-spin" />
+            </div>
+          </div>
+
+          <!-- Overs -->
+          <div class="overs-grid">
+            <div class="input-wrapper number-input">
+              <label for="over">Over</label>
+              <input type="number" id="over" min="1" max="19" required placeholder="10" />
+            </div>
+            <div class="input-wrapper number-input">
+              <label for="ball">Ball</label>
+              <input type="number" id="ball" min="1" max="6" required placeholder="1" />
+            </div>
+            <div class="live-stats-box">
+              <span class="stat-label">Current CRR</span>
+              <span class="stat-value" id="live-crr">0.00</span>
+            </div>
+          </div>
+
+          <div class="momentum-box">
+            <span class="momentum-title">Momentum (Last 5 Overs)</span>
+            <div class="momentum-inputs">
+              <div class="input-wrapper number-input compact">
+                <label for="runs_last_5_overs">Runs</label>
+                <input type="number" id="runs_last_5_overs" min="0" max="150" required placeholder="45" />
+              </div>
+              <div class="input-wrapper number-input compact">
+                <label for="wickets_last_5_overs">Wkts</label>
+                <input type="number" id="wickets_last_5_overs" min="0" max="10" required placeholder="1" />
+              </div>
+            </div>
+            <div class="momentum-bar-container"><div class="momentum-bar" id="momentum-fill"></div></div>
+          </div>
+
+          <button type="submit" class="cyber-button" id="predict-btn">
+            <span class="btn-content">INITIALIZE PROJECTION</span>
+            <span class="btn-glitch"></span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Sidebar Results -->
+      <aside class="results-sidebar">
+        
+        <!-- Main Result Card (Hidden until calculation) -->
+        <div class="result-card glass-panel" id="result-view">
+          <div class="scanning-beam"></div>
+          
+          <div class="result-state idle" id="result-idle">
+            <div class="idle-ring"></div>
+            <p>Awaiting match parameters</p>
+          </div>
+          
+          <div class="result-state calculating" id="result-calc">
+            <div class="cyber-spinner"></div>
+            <p>Running Neural Simulation...</p>
+            <div class="loading-bar"><div class="loading-fill"></div></div>
+          </div>
+
+          <div class="result-state complete" id="result-done">
+            <div class="score-flag" id="flag-team">Team</div>
+            <h3 class="projection-label">Projected Target</h3>
+            
+            <div class="final-score-container">
+              <div class="odometer" id="final-score">000</div>
+            </div>
+            
+            <div class="confidence-interval">
+              <span>Expected Range:</span>
+              <strong id="score-range">-- to --</strong>
+            </div>
+
+            <div class="analysis-box">
+              <div class="analysis-item">
+                <span>Model Confidence</span>
+                <strong id="conf-val" class="highlight-text">--%</strong>
+              </div>
+              <div class="analysis-item">
+                <span>Required Run Rate</span>
+                <strong id="req-rr">--</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Data Analytics from CSV -->
+        <div class="analytics-card glass-panel">
+          <h3>Real-time Data Insights</h3>
+          <div class="tab-triggers">
+            <button class="tab-btn active" data-target="venue">Venue Stats</button>
+            <button class="tab-btn" data-target="team">Team Stats</button>
+            <button class="tab-btn" data-target="wickets">Wicket Flow</button>
+          </div>
+          
+          <div id="player-stats-box" style="display: none; display: flex; justify-content: space-between; margin-bottom: 1rem; padding: 10px; background: rgba(0,0,0,0.03); border-radius: 8px;">
+            <!-- Content injected by JS -->
+          </div>
+
+          <div class="chart-display">
+             <canvas id="realtimeChart"></canvas>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
