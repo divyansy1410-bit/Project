@@ -205,5 +205,214 @@
     "Yash Dayal",
     "Yash Thakur",
     "Yuzvendra Chahal"
-  ]
+  ],
+  "team_batsmen": {
+    "Rajasthan Royals": [
+      "Shubham Dubey",
+      "Riyan Parag",
+      "Sanju Samson",
+      "Shimron Hetmyer",
+      "Dhruv Jurel",
+      "Yashasvi Jaiswal",
+      "Jos Buttler",
+      "Rovman Powell"
+    ],
+    "Gujarat Titans": [
+      "Abhinav Manohar",
+      "Vijay Shankar",
+      "Kane Williamson",
+      "Shahrukh Khan",
+      "Wriddhiman Saha",
+      "Shubman Gill",
+      "David Miller",
+      "Sai Sudharsan",
+      "Rahul Tewatia"
+    ],
+    "Lucknow Super Giants": [
+      "Marcus Stoinis",
+      "Kyle Mayers",
+      "Krunal Pandya",
+      "Nicholas Pooran",
+      "KL Rahul",
+      "Deepak Hooda",
+      "Quinton de Kock",
+      "Devdutt Padikkal",
+      "Ayush Badoni"
+    ],
+    "Chennai Super Kings": [
+      "Daryl Mitchell",
+      "Ruturaj Gaikwad",
+      "Ajinkya Rahane",
+      "Devon Conway",
+      "Sameer Rizvi",
+      "Shivam Dube",
+      "MS Dhoni",
+      "Moeen Ali"
+    ],
+    "Punjab Kings": [
+      "Ashutosh Sharma",
+      "Liam Livingstone",
+      "Shashank Singh",
+      "Jonny Bairstow",
+      "Shikhar Dhawan",
+      "Prabhsimran Singh",
+      "Jitesh Sharma",
+      "Sam Curran",
+      "Rilee Rossouw"
+    ],
+    "Sunrisers Hyderabad": [
+      "Abdul Samad",
+      "Nitish Kumar Reddy",
+      "Heinrich Klaasen",
+      "Aiden Markram",
+      "Travis Head",
+      "Mayank Agarwal",
+      "Rahul Tripathi",
+      "Abhishek Sharma",
+      "Glenn Phillips"
+    ],
+    "Royal Challengers Bangalore": [
+      "Dinesh Karthik",
+      "Virat Kohli",
+      "Faf du Plessis",
+      "Mahipal Lomror",
+      "Rajat Patidar",
+      "Cameron Green",
+      "Will Jacks",
+      "Anuj Rawat",
+      "Glenn Maxwell"
+    ],
+    "Mumbai Indians": [
+      "Tim David",
+      "Rohit Sharma",
+      "Romario Shepherd",
+      "Tilak Varma",
+      "Suryakumar Yadav",
+      "Dewald Brevis",
+      "Ishan Kishan",
+      "Hardik Pandya",
+      "Nehal Wadhera"
+    ],
+    "Kolkata Knight Riders": [
+      "Angkrish Raghuvanshi",
+      "Shreyas Iyer",
+      "Phil Salt",
+      "Manish Pandey",
+      "Nitish Rana",
+      "Andre Russell",
+      "Venkatesh Iyer",
+      "Rinku Singh"
+    ],
+    "Delhi Capitals": [
+      "Mitchell Marsh",
+      "Prithvi Shaw",
+      "Yash Dhull",
+      "Tristan Stubbs",
+      "Abishek Porel",
+      "Jake Fraser-McGurk",
+      "Harry Brook",
+      "David Warner",
+      "Rishabh Pant"
+    ]
+  },
+  "team_bowlers": {
+    "Kolkata Knight Riders": [
+      "Vaibhav Arora",
+      "Harshit Rana",
+      "Sunil Narine",
+      "Mujeeb Ur Rahman",
+      "Varun Chakaravarthy",
+      "Chetan Sakariya",
+      "Mitchell Starc"
+    ],
+    "Sunrisers Hyderabad": [
+      "Bhuvneshwar Kumar",
+      "Umran Malik",
+      "Marco Jansen",
+      "Mayank Markande",
+      "T Natarajan",
+      "Jaydev Unadkat",
+      "Pat Cummins",
+      "Washington Sundar"
+    ],
+    "Rajasthan Royals": [
+      "Yuzvendra Chahal",
+      "Nandre Burger",
+      "Trent Boult",
+      "Kuldeep Sen",
+      "Navdeep Saini",
+      "Sandeep Sharma",
+      "R Ashwin",
+      "Avesh Khan"
+    ],
+    "Royal Challengers Bangalore": [
+      "Yash Dayal",
+      "Akash Deep",
+      "Vyshak Vijaykumar",
+      "Alzarri Joseph",
+      "Karn Sharma",
+      "Mohammed Siraj",
+      "Lockie Ferguson",
+      "Reece Topley"
+    ],
+    "Mumbai Indians": [
+      "Jasprit Bumrah",
+      "Luke Wood",
+      "Gerald Coetzee",
+      "Nuwan Thushara",
+      "Piyush Chawla",
+      "Akash Madhwal",
+      "Dilshan Madushanka",
+      "Shreyas Gopal"
+    ],
+    "Delhi Capitals": [
+      "Ishant Sharma",
+      "Lalit Yadav",
+      "Jhye Richardson",
+      "Khaleel Ahmed",
+      "Anrich Nortje",
+      "Kuldeep Yadav",
+      "Mukesh Kumar",
+      "Axar Patel"
+    ],
+    "Lucknow Super Giants": [
+      "Matt Henry",
+      "Mohsin Khan",
+      "Naveen-ul-Haq",
+      "Shamar Joseph",
+      "Yash Thakur",
+      "Ravi Bishnoi",
+      "Amit Mishra",
+      "Mayank Yadav"
+    ],
+    "Gujarat Titans": [
+      "R Sai Kishore",
+      "Noor Ahmad",
+      "Darshan Nalkande",
+      "Mohammed Shami",
+      "Umesh Yadav",
+      "Spencer Johnson",
+      "Mohit Sharma",
+      "Rashid Khan"
+    ],
+    "Chennai Super Kings": [
+      "Deepak Chahar",
+      "Mukesh Choudhary",
+      "Shardul Thakur",
+      "Mustafizur Rahman",
+      "Tushar Deshpande",
+      "Maheesh Theekshana",
+      "Matheesha Pathirana",
+      "Ravindra Jadeja"
+    ],
+    "Punjab Kings": [
+      "Arshdeep Singh",
+      "Kagiso Rabada",
+      "Harpreet Brar",
+      "Vidwath Kaverappa",
+      "Harshal Patel",
+      "Rahul Chahar",
+      "Nathan Ellis"
+    ]
+  }
 }

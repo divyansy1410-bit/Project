@@ -1,5 +1,5 @@
 """
-Flask API – IPL Score Prediction  (PyTorch backend)
+Flask API – IPL Score Prediction  (scikit-learn backend)
 Endpoints:
   GET  /             → serve web dashboard
   GET  /api/options  → label options for dropdowns
@@ -15,55 +15,15 @@ import pandas as pd
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
-import torch
-import torch.nn as nn
-
 # ── Paths ──────────────────────────────────────────────────────────────────────
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR  = os.path.join(BASE_DIR, "model")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
-# ── Recreate model architecture ────────────────────────────────────────────────
-class IPLScoreNet(nn.Module):
-    def __init__(self, in_dim):
-        super().__init__()
-        self.net = nn.Sequential(
-            nn.Linear(in_dim, 256),
-            nn.BatchNorm1d(256),
-            nn.ReLU(),
-            nn.Dropout(0.30),
-
-            nn.Linear(256, 128),
-            nn.BatchNorm1d(128),
-            nn.ReLU(),
-            nn.Dropout(0.25),
-
-            nn.Linear(128, 64),
-            nn.BatchNorm1d(64),
-            nn.ReLU(),
-            nn.Dropout(0.20),
-
-            nn.Linear(64, 32),
-            nn.ReLU(),
-
-            nn.Linear(32, 1)
-        )
-
-    def forward(self, x):
-        return self.net(x)
-
-# ── Load model artefacts ───────────────────────────────────────────────────────
+# ── Load model artefacts (scikit-learn) ───────────────────────────────────────
 print("Loading model artefacts …")
-DEVICE = torch.device("cpu")
 
-with open(os.path.join(MODEL_DIR, "arch.json")) as f:
-    arch = json.load(f)
-
-model = IPLScoreNet(arch["input_dim"])
-model.load_state_dict(torch.load(os.path.join(MODEL_DIR, "ipl_model.pt"),
-                                  map_location=DEVICE))
-model.eval()
-
+model    = joblib.load(os.path.join(MODEL_DIR, "ipl_model_sklearn.pkl"))
 scaler   = joblib.load(os.path.join(MODEL_DIR, "scaler.pkl"))
 encoders = joblib.load(os.path.join(MODEL_DIR, "encoders.pkl"))
 
@@ -172,8 +132,7 @@ def predict():
         X = np.array([row], dtype=np.float32)
         X = scaler.transform(X)
 
-        with torch.no_grad():
-            pred = model(torch.tensor(X, dtype=torch.float32)).item()
+        pred = model.predict(X)[0]
 
         current = float(data.get("current_score", 0))
         pred = max(current, round(pred))
